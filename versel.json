@@ -1,6 +1,6 @@
   {
     "version": 2,
-    "name": "it-incubator-hometasks",
+    "name": "first",
     "builds": [
        { "src": "src/index.ts", "use": "@vercel/node" }
     ],
