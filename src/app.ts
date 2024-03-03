@@ -38,8 +38,8 @@ app.post('/videos/', postVideo)
 
 
 export const getVideos = (req: Request, res: Response) => {
-    const id = +req.params.videoId;
-    const video = db.videos.find(v => v.id === id)
+    
+    const video = db.videos
     if (video) {
         res.status(200).json(db.videos)
     } else {

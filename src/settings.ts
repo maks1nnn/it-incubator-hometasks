@@ -1,10 +1,10 @@
-//import {config} from 'dotenv'
-//config()
+import {config} from 'dotenv'
+config()
 
 
 export const SETTINGS = {
     PORT:  3003,
-    /*PATH: {
+    PATH: {
         VIDEOS: '/videos'
-    }*/
+    }
 }
