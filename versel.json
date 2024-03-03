@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "it-incubator-hometasks",
+    
     "builds": [
       {
         "src": "src/index.ts",
