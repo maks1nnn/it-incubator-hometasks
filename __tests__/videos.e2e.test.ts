@@ -1,5 +1,5 @@
 import {req} from './test-helpers'
-
+import { SETTINGS } from '../src/settings'
 describe('/videos', () => {
     beforeAll(async () => {
 
@@ -12,7 +12,7 @@ afterAll( async () => {
 
 it('GET videos = []', async () => {
     const res = await req
-         .get('/videos')
+         .get(SETTINGS.PATH.VIDEOS)
          .expect(200)
 
 
@@ -21,6 +21,11 @@ it('GET videos = []', async () => {
         //expect(res.body.length).toBe(1)
 
 
+})
+
+it('POST new video', async () => {
+const res = await req
+                    .post('/vodeos')
 })
 
 })

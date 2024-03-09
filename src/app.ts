@@ -1,16 +1,24 @@
 import express, { Request, Response } from 'express'
-import { createDB } from "./db"
+import { createDB } from "./db/db"
+import { SETTINGS } from './settings'
+import { videoRouter } from './videos'
+import { RequestWithBody, RequestWithParams, RequestWithParamsAndBody, RequestWithQuery } from '../types/typesVideo'
+
+import {CreateVideoModel} from "./models/CreateVideoModel"
+import { getVideoController } from './videos/getVideosController'
 export const app = express()
 
 export const db = createDB()
 
 app.use(express.json())
 
+app.use(SETTINGS.PATH.VIDEOS, videoRouter)
+
 app.get('/', (req, res) => {
     res.status(200).json({ hello: 'world' })
 })
 
-const postVideo = (req:Request, res:Response) => {
+const postVideo = (req:RequestWithBody<CreateVideoModel>, res:Response) => {
     let title = req.body.title
     if (!title || typeof title !== 'string' || !title.trim() || title.length > 40){
         res.status(400).send({
@@ -37,17 +45,10 @@ const postVideo = (req:Request, res:Response) => {
 app.post('/videos/', postVideo)
 
 
-export const getVideos = (req: Request, res: Response) => {
-    
-    const video = db.videos
-    if (video) {
-        res.status(200).json(db.videos)
-    } else {
-        res.send(404)
-    }
 
-}
-app.get('/videos', getVideos)
+app.get(SETTINGS.PATH.VIDEOS, getVideoController)
+
+
 
 export const putVideo = (req: Request, res: Response) => {
     let title = req.body.title
